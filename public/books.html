@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Books</title>
+<link rel="stylesheet" href="books.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <h1>📚 Library Books</h1>
+
+  <input id="search" placeholder="Search books..." onkeyup="searchBooks()">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Author</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="bookList"></tbody>
+  </table>
+</div>
+
+<script src="books.js"></script>
+</body>
+</html>

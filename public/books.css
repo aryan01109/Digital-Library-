@@ -1,0 +1,59 @@
+body{
+  margin:0;
+  font-family:Inter;
+  background:radial-gradient(circle at top,#1e40af,#020617);
+  color:white;
+  padding:30px;
+}
+
+.container{
+  background:rgba(255,255,255,0.06);
+  padding:30px;
+  border-radius:20px;
+  backdrop-filter:blur(15px);
+}
+
+h1{
+  margin-bottom:20px;
+}
+
+input{
+  padding:12px;
+  width:300px;
+  border:none;
+  border-radius:10px;
+  margin-bottom:20px;
+}
+
+table{
+  width:100%;
+  background:rgba(255,255,255,0.05);
+  border-collapse:collapse;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+th,td{
+  padding:15px;
+}
+
+th{
+  background:rgba(255,255,255,0.1);
+}
+
+.available{
+  color:#22c55e;
+}
+
+.issued{
+  color:#ef4444;
+}
+
+button{
+  padding:8px 20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  background:linear-gradient(45deg,#3b82f6,#22d3ee);
+  color:white;
+}

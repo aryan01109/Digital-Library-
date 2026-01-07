@@ -3,6 +3,7 @@ Modernizing Libraries with AI, Analytics, and Mobile Technology
 
 Central Library AI is a next-generation digital library and AI-powered learning platform that combines Web, Mobile, and Artificial Intelligence to create a smart, automated, and student-friendly library ecosystem.
 
+---
 🚨 Problem Statement
 
 Traditional libraries face many issues:
@@ -16,6 +17,8 @@ Traditional libraries face many issues:
 👨‍🎓 Poor student engagement
 
 📉 No analytics or performance tracking
+
+---
 
 💡 Our Solution
 
@@ -31,6 +34,8 @@ Central Library AI provides a smart digital solution that:
 
 💰 Enables digital payments
 
+---
+
 🚀 Core Features
 📖 Library Management
 
@@ -43,6 +48,7 @@ Central Library AI provides a smart digital solution that:
 ✔ Issue & Return System
 
 ✔ Due Dates & Fine Calculation
+---
 
 🤖 AI-Powered Learning
 
@@ -56,6 +62,8 @@ Central Library AI provides a smart digital solution that:
 
 ✔ Spoken Exam Practice
 
+---
+
 📊 Analytics & Reports
 
 ✔ Student-wise Performance
@@ -65,6 +73,7 @@ Central Library AI provides a smart digital solution that:
 ✔ AI Learning Insights
 
 ✔ AI-Generated Report Cards
+---
 
 📱 Mobile Application
 
@@ -75,6 +84,8 @@ Central Library AI provides a smart digital solution that:
 ✔ Voice AI Tutor
 
 ✔ Live Book & Student Data
+
+----
 
 💰 Business & Automation
 

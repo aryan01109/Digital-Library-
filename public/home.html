@@ -7,42 +7,83 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav>
-  <div class="logo">📚 Central Library</div>
-  <div class="nav-links">
-    <a>Home</a>
-    <a>Books</a>
-    <a>Dashboard</a>
-    <button class="login-btn">Login</button>
-  </div>
-</nav>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <!-- Ensure logo.png exists in your 'photos' folder -->
+            <img src="photos/logo.png" alt="LDCE Logo" onerror="this.src='https://via.placeholder.com/50?text=Logo'">
+            <span>LDCE Library</span>
+        </div>
+        <div class="nav-links">
+            <a href="home.html" class="active">Home</a>
+            <a href="books.html">Browse Books</a>
+            <a href="dashboard.html">My Dashboard</a>
+            <button class="login-btn" onclick="alert('Login Modal would open here')">Login</button>
+        </div>
+    </nav>
 
-<!-- Hero Section -->
-<section class="hero">
-  <h1>Smart Digital Library</h1>
-  <p>Manage books, track issues, and explore knowledge — all in one place.</p>
-  <button class="cta">Get Started</button>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Central Library</h1>
+        <p>Manage books, track issues, and explore knowledge — all in one unified digital platform.</p>
+        
+        <div class="hero-actions">
+            <a href="books.html" class="cta-btn btn-primary">Find a Book</a>
+            <a href="dashboard.html" class="cta-btn btn-outline">Check My Status</a>
+        </div>
+    </section>
 
-<!-- Feature Cards -->
-<section class="cards">
-  <div class="card">
-    📚 <h3>5000+ Books</h3>
-    <p>Huge collection of academic and reference books</p>
-  </div>
+    <!-- Info Strip -->
+    <div class="time_info_etc">
+        <div class="info-card">
+            <i class="fa-regular fa-clock"></i>
+            <span>10:00 AM - 9:00 PM</span>
+        </div>
+        <div class="info-card">
+            <i class="fa-solid fa-phone"></i>
+            <span>+91 123 456 789</span>
+        </div>
+        <div class="info-card">
+            <i class="fa-solid fa-circle-question"></i>
+            <span>Ask a Librarian</span>
+        </div>
+    </div>
 
-  <div class="card">
-    👨‍🎓 <h3>Student Portal</h3>
-    <p>Each student can view issued books and due dates</p>
-  </div>
+    <!-- Quick Stats (Added to make it look professional) -->
+    <section class="dashboard-preview">
+        <h2>Quick Library Stats</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>50k+</h3>
+                <p>Physical Books</p>
+            </div>
+            <div class="stat-item">
+                <h3>1.2k</h3>
+                <p>E-Journals</p>
+            </div>
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Daily Visitors</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Digital Access</p>
+            </div>
+        </div>
+    </section>
 
-  <div class="card">
-    ⚡ <h3>Fast Search</h3>
-    <p>Find any book in seconds</p>
-  </div>
-</section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 L.D. College of Engineering. All rights reserved.</p>
+    </footer>
 
-<script src="home.js"></script>
+    <script>
+        // Simple JS to add interactivity
+        document.querySelector('.login-btn').addEventListener('click', function() {
+            // Placeholder for login logic
+            console.log("Login clicked");
+        });
+    </script>
 </body>
 </html>
+

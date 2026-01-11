@@ -68,21 +68,84 @@
             width: auto;
         }
 
-        .nav-links {
+                .nav-links ul {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 30px;
+            height: 100%;
+        }
+
+        /* --- DROPDOWN LOGIC STARTS HERE --- */
+        
+        /* 1. The Parent Item (The 'li') */
+        .nav-links ul li {
+            position: relative; /* CRITICAL: Anchors the dropdown to this item */
+            height: 80px; /* Match nav height for better hover area */
+            display: flex;
+            align-items: center;
         }
 
         .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a:hover { color: var(--primary); }
+
+        /* 2. The Dropdown Menu (Hidden State) */
+        .drop1 {
+            position: absolute;
+            top: 100%; /* Push it right below the navbar */
+            left: 0;
+            background-color: var(--white);
+            min-width: 200px; /* Wider for better readability */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border-top: 3px solid var(--secondary); /* Nice accent line */
+            border-radius: 0 0 8px 8px;
+            
+            /* Hiding Logic */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px); /* Start slightly lower */
+            transition: all 0.3s ease;
+            
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            overflow: hidden;
+            z-index: 999;
         }
+
+        /* 3. The Hover Trigger (Show Dropdown) */
+        .nav-links ul li:hover .drop1 {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0); /* Slide up to position */
+        }
+
+        /* 4. Dropdown Item Styling */
+        .drop1 span a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 500;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .drop1 span a:hover {
+            background-color: var(--bg-light);
+            color: var(--primary);
+            padding-left: 25px; /* Slide effect */
+        }
+
+    
+
+
 
         .login-btn {
             background-color: var(--primary);
@@ -186,33 +249,46 @@
         }
 
 /* New arrival section */
-.arrival_container{
-    width: auto;
-    height: 400px;
-    background-color: #e5e7eb;
-    display: flex;
-    flex-wrap: wrap;
-    
-}
-.arrival_heading{
-    width: 100%;
-    text-align: center;
-    align-self: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    color: #1f2937;
-}
-.arrival_card{
-    display: flex;
-    flex-direction: column;
-    height: 24ch;
-    width: 20ch;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    margin: 21px;
-    background-color: #1a1a1a;
-}
+       .arrival_container {
+            padding: 50px 5%;
+            background-color:#e5e7eb;
+        }
+        
+        .arrival_heading { text-align: center; margin-bottom: 30px; color: var(--primary); }
+        
+        .card_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .arrival_card {
+            background-color: var(--white);
+            width: 220px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .arrival_card:hover { transform: translateY(-5px); }
+
+        .img_box {
+            height: 250px;
+            background-color: #eee;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+
+        .arrival_card span { display: block; }
+        .book-title { font-weight: 700; color: var(--text-dark); margin-bottom: 5px; }
+        .book-author { font-size: 0.9rem; color: #666; }
+
 
         /* --- FOOTER --- */
         footer {

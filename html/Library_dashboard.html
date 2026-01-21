@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Central Library Dashboard</title>
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>📚 Central Library</h2>
+  <a class="active">Dashboard</a>
+  <a href="books.html">Books</a>
+  <a href="students.html">Students</a>
+  <a href="issues.html">Issued</a>
+  <a onclick="logout()">Logout</a>
+</div>
+
+<div class="main">
+
+<div class="topbar">
+  <h1>Library Dashboard</h1>
+  <input id="search" placeholder="Search books..." onkeyup="searchBooks()">
+</div>
+
+<div class="cards">
+  <div class="card blue">Total Books <span id="total">0</span></div>
+  <div class="card green">Available <span id="available">0</span></div>
+  <div class="card red">Issued <span id="issued">0</span></div>
+</div>
+
+<div class="add-book">
+  <input id="title" placeholder="Book Title">
+  <input id="author" placeholder="Author">
+  <button id="addBookBtn" onclick="addBook()">Add Book</button>
+</div>
+
+<table>
+<thead>
+<tr>
+  <th>Book</th>
+  <th>Author</th>
+  <th>Status</th>
+  <th>Action</th>
+</tr>
+</thead>
+<tbody id="bookList"></tbody>
+</table>
+
+</div>
+
+<script src="../js/deashboard.js"></script>
+</body>
+</html>

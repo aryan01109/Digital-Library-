@@ -1,0 +1,65 @@
+
+[
+  {
+    "title": "3D Fibre Reinforced Polymer Composites",
+    "isbnFormatted": "978-0-08-043938-9",
+    "url": "https://www.sciencedirect.com/science/book/9780080439389",
+    "author": "Liyong Tong, Adrian P. Mouritz and Michael K. Bannister",
+    "isbn": "9780080439389",
+    "publisher": "Elsevier Science",
+    "type": "Book",
+    "year": 2002,
+    "subscribedDate": "2007-05-09",
+    "status": "Subscribed"
+  },
+  {
+    "title": "A Guide to Microsoft Excel 2007 for Scientists and Engineers",
+    "isbnFormatted": "978-0-12-374623-8",
+    "url": "https://www.sciencedirect.com/science/book/9780123746238",
+    "author": "Bernard V. Liengme and David J. Ellert",
+    "isbn": "9780123746238",
+    "publisher": "Academic Press",
+    "type": "Book",
+    "year": 2008,
+    "subscribedDate": "2009-05-08",
+    "status": "Subscribed"
+  },
+  {
+    "title": "A Guide to the Collision Avoidance Rules (Seventh Edition)",
+    "isbnFormatted": "978-0-08-097170-4",
+    "url": "https://www.sciencedirect.com/science/book/9780080971704",
+    "author": "A.N. Cockcroft and J.N.F. Lameijer",
+    "isbn": "9780080971704",
+    "publisher": "Butterworth-Heinemann",
+    "type": "Book",
+    "year": 2012,
+    "subscribedDate": "2011-11-23",
+    "status": "Subscribed"
+  },
+  {
+    "title": "A Wavelet Tour of Signal Processing (Second Edition)",
+    "isbnFormatted": "978-0-12-466606-1",
+    "url": "https://www.sciencedirect.com/science/book/9780124666061",
+    "author": "Stéphane Mallat",
+    "isbn": "9780124666061",
+    "publisher": "Academic Press",
+    "type": "Book",
+    "year": 1999,
+    "subscribedDate": "2007-09-02",
+    "status": "Subscribed"
+  },
+  {
+    "title": "Adaptive Control Systems",
+    "isbnFormatted": "978-0-7506-3996-5",
+    "url": "https://www.sciencedirect.com/science/book/9780750639965",
+    "author": "Gang Feng and Rogelio Lozano",
+    "isbn": "9780750639965",
+    "publisher": "Newnes",
+    "type": "Book",
+    "year": 1999,
+    "subscribedDate": "2007-09-28",
+    "status": "Subscribed"
+  }
+]
+
+

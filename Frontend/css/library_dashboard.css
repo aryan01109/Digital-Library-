@@ -1,0 +1,48 @@
+        :root {
+            --ldce-blue: #1a3a8a;
+            --ldce-hover: #2563eb;
+            --bg-gray: #f4f7f9;
+        }
+        body { background-color: var(--bg-gray); font-family: 'Inter', sans-serif; }
+        
+        .sidebar {
+            background-color: var(--ldce-blue);
+            height: 100vh;
+            width: 260px;
+            position: fixed;
+            color: white;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            transition: 0.3s;
+            color: rgba(255,255,255,0.7);
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-left: 4px solid white;
+        }
+        .main-content { margin-left: 260px; padding: 40px; }
+        
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--ldce-blue);
+        }
+        
+        table { width: 100%; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        th { background: #f8fafc; color: #64748b; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; padding: 15px; }
+        td { padding: 15px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+
+        .btn-issue { background: var(--ldce-blue); color: white; padding: 8px 16px; border-radius: 6px; font-size: 0.875rem; font-weight: 500; transition: all 0.2s; }
+        .btn-issue:hover:not(:disabled) { background: var(--ldce-hover); transform: translateY(-1px); }
+        .btn-issue:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+        .btn-edit { color: var(--ldce-blue); transition: 0.2s; padding: 8px; border-radius: 6px; }
+        .btn-edit:hover { background: #e0e7ff; }
+        
+        #issueModal, #editModal { display: none; }

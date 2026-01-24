@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | Central Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="student_dashboard.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="photos/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/40?text=L'">
+            <span>LDCE Library</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#" onclick="logout()">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- LEFT SIDE: PROFILE -->
+        <div class="profile-card">
+            <div class="avatar"><i class="fa-solid fa-user"></i></div>
+            <h2 id="disp-name">Loading...</h2>
+            <p id="disp-role">Student</p>
+
+            <div class="detail-row">
+                <span>Enrollment No</span>
+                <span id="disp-enrollment">...</span>
+            </div>
+            <div class="detail-row">
+                <span>Library Card</span>
+                <span style="color: green;">Active</span>
+            </div>
+            <div class="detail-row">
+                <span>Joined</span>
+                <span>Jan 2024</span>
+            </div>
+
+            <button class="edit-btn" onclick="openEditModal()">
+                <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+            </button>
+        </div>
+
+        <!-- RIGHT SIDE: CONTENT -->
+        <div>
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon icon-blue"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="stat-info">
+                        <h3 id="stat-issued">0</h3>
+                        <p>Books Issued</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-green"><i class="fa-regular fa-calendar-check"></i></div>
+                    <div class="stat-info">
+                        <h3>15</h3>
+                        <p>Days Left</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-red"><i class="fa-solid fa-circle-exclamation"></i></div>
+                    <div class="stat-info">
+                        <h3>₹0</h3>
+                        <p>Total Fine</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTION BANNER (Redirects to books.html) -->
+            <div class="action-banner">
+                <div>
+                    <h3>Looking for a new book?</h3>
+                    <p>Search our digital catalog and borrow books instantly.</p>
+                </div>
+                <a href="books.html" class="cta-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i> Browse Catalog
+                </a>
+            </div>
+
+            <!-- MY ISSUED BOOKS -->
+            <h3 class="section-title">My Issued Books</h3>
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Issue Date</th>
+                            <th>Due Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myBooksList">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-box">
+            <h3>Edit Profile Details</h3>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="edit-name">
+            </div>
+            <div class="form-group">
+                <label>Enrollment Number (Locked)</label>
+                <input type="text" id="edit-enrollment" disabled>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+                <button class="btn-save" onclick="saveProfile()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <script src="student_dashboard.js"></script>
+</body>
+
+</html>

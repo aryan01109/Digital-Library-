@@ -4,24 +4,49 @@ import path from "path";
 
 const router = express.Router();
 
-const dataPath = path.resolve("data/students.json");
+const filePath = path.resolve("data/reading.json");
 
-// GET analytics data
+// 👉 GET all students reading data
 router.get("/", (req, res) => {
   try {
-    const rawData = fs.readFileSync(dataPath);
-    const students = JSON.parse(rawData);
+    const data = JSON.parse(fs.readFileSync(filePath));
 
-    const names = students.map(s => s.name);
-    const marks = students.map(s => s.marks);
+    const formatted = data.map(student => ({
+      name: student.name,
+      books: student.books,
+      count: student.books.length
+    }));
+
+    res.json(formatted);
+
+  } catch (err) {
+    res.status(500).json({ error: "Unable to load analytics" });
+  }
+});
+
+
+// 👉 GET particular student analytics
+router.get("/:name", (req, res) => {
+
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath));
+
+    const student = data.find(
+      s => s.name.toLowerCase() === req.params.name.toLowerCase()
+    );
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
 
     res.json({
-      labels: names,
-      scores: marks
+      name: student.name,
+      books: student.books,
+      count: student.books.length
     });
 
   } catch (err) {
-    res.status(500).json({ error: "Failed to load analytics data" });
+    res.status(500).json({ error: "Error reading data" });
   }
 });
 

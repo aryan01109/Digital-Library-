@@ -1,0 +1,20 @@
+[
+    [
+  {
+    "id": 1,
+    "name": "Aryan",
+    "books": ["C++ Basics", "DBMS", "Operating Systems"]
+  },
+  {
+    "id": 2,
+    "name": "Riya",
+    "books": ["Python", "AI Intro"]
+  },
+  {
+    "id": 3,
+    "name": "Jay",
+    "books": ["Java", "Web Dev", "Node.js", "MongoDB"]
+  }
+]
+
+]

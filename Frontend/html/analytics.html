@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librarian Analytics | Central Library</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js Library (Standard for Web Analytics) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../css/analytics.css">
+
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #e63946;
+            --bg-light: #f3f4f6;
+            --white: #ffffff;
+            --text-dark: #1f2937;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .brand {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-left: 260px; /* Offset for sidebar */
+            flex: 1;
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 { font-size: 1.8rem; }
+        
+        .date-display {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* --- KPI CARDS (Summary Stats) --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .kpi-title { font-size: 0.85rem; color: #6b7280; font-weight: 600; text-transform: uppercase; }
+        .kpi-value { font-size: 2rem; font-weight: 700; color: var(--primary); margin: 10px 0; }
+        .kpi-trend { font-size: 0.85rem; }
+        .trend-up { color: #10b981; } /* Green */
+        .trend-down { color: #ef4444; } /* Red */
+
+        /* --- CHART SECTION --- */
+        .chart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .time-filters {
+            display: flex;
+            background: #f3f4f6;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .filter-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .filter-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .chart-container { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-book-open"></i> Librarian
+        </div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-list-check"></i> Manage Books</a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-users"></i> Students</a>
+        <a href="#" class="menu-item active"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+        <a href="#" class="menu-item" style="margin-top: auto;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Library Analytics</h1>
+            <div class="date-display" id="currentDate"></div>
+        </div>
+
+        <!-- SUMMARY CARDS -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <span class="kpi-title">Total Issues (Today)</span>
+                <span class="kpi-value" id="kpi-today">24</span>
+                <span class="kpi-trend trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +12% vs yesterday</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-title">Monthly Issues</span>
+                <span class="kpi-value" id="kpi-month">845</span>
+                <span class="kpi-trend trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +5% vs last month</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-title">Active Members</span>
+                <span class="kpi-value">1,204</span>
+                <span class="kpi-trend"><span style="color:#6b7280">Steady</span></span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-title">Overdue Books</span>
+                <span class="kpi-value" style="color: #ef4444;">18</span>
+                <span class="kpi-trend trend-down"><i class="fa-solid fa-circle-exclamation"></i> Action Needed</span>
+            </div>
+        </div>
+
+        <!-- CHARTS -->
+        <div class="chart-container">
+            
+            <!-- MAIN TREND CHART -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Issue Trends</h3>
+                    <div class="time-filters">
+                        <button class="filter-btn active" onclick="updateChart('daily')">Daily</button>
+                        <button class="filter-btn" onclick="updateChart('monthly')">Monthly</button>
+                        <button class="filter-btn" onclick="updateChart('yearly')">Yearly</button>
+                    </div>
+                </div>
+                <canvas id="trendChart"></canvas>
+            </div>
+
+            <!-- PIE CHART -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Category Popularity</h3>
+                </div>
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- 1. SETUP DATE ---
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        // --- 2. MOCK DATA GENERATOR (Simulating a Database) ---
+        // Generating random issue counts for the past 12 months
+        function generateData(count, min, max) {
+            return Array.from({length: count}, () => Math.floor(Math.random() * (max - min + 1) + min));
+        }
+
+        // Data Sets
+        const dataDaily = generateData(7, 10, 50); // Last 7 days
+        const labelsDaily = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+        const dataMonthly = generateData(12, 500, 900); // Last 12 months
+        const labelsMonthly = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        const dataYearly = [8500, 9200, 10500, 11200]; // Last 4 years
+        const labelsYearly = ['2021', '2022', '2023', '2024'];
+
+        // --- 3. INITIALIZE CHARTS ---
+        const ctxTrend = document.getElementById('trendChart').getContext('2d');
+        const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+
+        // Main Trend Chart
+        let trendChart = new Chart(ctxTrend, {
+            type: 'line',
+            data: {
+                labels: labelsDaily,
+                datasets: [{
+                    label: 'Books Issued',
+                    data: dataDaily,
+                    borderColor: '#003366',
+                    backgroundColor: 'rgba(0, 51, 102, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4 // Makes line curved
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // Category Pie Chart
+        new Chart(ctxCategory, {
+            type: 'doughnut',
+            data: {
+                labels: ['Computer Science', 'Mathematics', 'Civil Eng', 'Electronics', 'Literature'],
+                datasets: [{
+                    data: [35, 20, 15, 25, 5],
+                    backgroundColor: [
+                        '#003366', // Navy
+                        '#e63946', // Red
+                        '#10b981', // Green
+                        '#f59e0b', // Yellow
+                        '#8b5cf6'  // Purple
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // --- 4. FILTER LOGIC ---
+        function updateChart(period) {
+            // Update Buttons UI
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update Chart Data
+            if (period === 'daily') {
+                trendChart.data.labels = labelsDaily;
+                trendChart.data.datasets[0].data = dataDaily;
+            } else if (period === 'monthly') {
+                trendChart.data.labels = labelsMonthly;
+                trendChart.data.datasets[0].data = dataMonthly;
+            } else if (period === 'yearly') {
+                trendChart.data.labels = labelsYearly;
+                trendChart.data.datasets[0].data = dataYearly;
+            }
+            
+            trendChart.update();
+        }
+    </script>
+    <script src="../js/analytics.js"></script>
+</body>
+</html>

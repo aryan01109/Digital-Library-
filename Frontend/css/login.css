@@ -1,0 +1,195 @@
+:root {
+    --primary: #003366;
+    --accent: #e63946;
+    --bg-light: #f3f4f6;
+    --text-dark: #1f2937;
+    --white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+body {
+    background-color: var(--bg-light);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    background-color: var(--white);
+    width: 900px;
+    max-width: 90%;
+    min-height: 550px;
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+/* --- LEFT SIDE (IMAGE/BRANDING) --- */
+.brand-section {
+    flex: 1;
+    /* You can change this URL to your own image later */
+    background: linear-gradient(rgba(0, 51, 102, 0.9), rgba(0, 51, 102, 0.8)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.brand-section h1 { font-size: 2.2rem; margin-bottom: 10px; margin-top: 20px;}
+.brand-section p { opacity: 0.9; font-size: 1rem; line-height: 1.6; }
+
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+/* --- RIGHT SIDE (FORM) --- */
+.form-section {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* Role Toggle Switch */
+.role-toggle {
+    display: flex;
+    background-color: #f3f4f6;
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background-color: var(--white);
+    color: var(--primary);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.toggle-btn:hover:not(.active) {
+    color: var(--primary);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* View Handling */
+.form-view { transition: opacity 0.3s ease; }
+.hidden { display: none; }
+
+.form-header { margin-bottom: 30px; text-align: center; }
+.form-header h2 { color: var(--primary); font-size: 1.8rem; margin-bottom: 5px; }
+.form-header span { color: #6b7280; font-size: 0.9rem; }
+
+/* Input Groups */
+.input-group { margin-bottom: 20px; position: relative; }
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 12px 12px 40px; /* Space for left icon */
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+/* Icons */
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 42px; /* Adjusted based on label height */
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 42px;
+    color: #9ca3af;
+    cursor: pointer;
+    z-index: 10;
+}
+.password-toggle:hover { color: var(--primary); }
+
+/* Buttons & Links */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.85rem;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-btn:hover { background-color: #002244; }
+
+.switch-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+.switch-link a { color: var(--primary); font-weight: 600; cursor: pointer; }
+.switch-link a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-container { flex-direction: column; height: auto; }
+    .brand-section { padding: 30px; }
+    .form-section { padding: 30px; }
+}

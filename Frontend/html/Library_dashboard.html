@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDCE Library - Librarian Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/library_dashboard.css">
+</head>
+
+<body>
+
+    <div id="custom-alert"></div>
+
+    <div class="sidebar">
+        <div class="p-8 text-2xl font-bold border-b border-blue-800 text-center uppercase tracking-wider">LDCE Admin
+        </div>
+        <nav class="mt-6">
+            <a href="#" class="active"><i class="fas fa-chart-line mr-3"></i> Dashboard</a>
+            <a href="books.html"><i class="fas fa-book mr-3"></i> Books</a>
+            <a href="students.html"><i class="fas fa-user-graduate mr-3"></i> Students</a>
+            <a href="issues.html"><i class="fas fa-history mr-3"></i> Issued History</a>
+            <a href="login.html" class="mt-20"><i class="fas fa-sign-out-alt mr-3"></i> Logout</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Library Management</h1>
+            <div class="relative">
+                <input id="searchBox" type="text" placeholder="Search title or author..." onkeyup="handleSearch()"
+                    class="pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none w-80 shadow-sm">
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="stat-card">
+                <p class="text-gray-500 font-medium">Total Books</p>
+                <h2 id="statTotal" class="text-3xl font-bold mt-1 text-blue-900">0</h2>
+            </div>
+            <div class="stat-card" style="border-bottom-color: #10b981;">
+                <p class="text-gray-500 font-medium">Available</p>
+                <h2 id="statAvailable" class="text-3xl font-bold mt-1 text-green-600">0</h2>
+            </div>
+            <div class="stat-card" style="border-bottom-color: #ef4444;">
+                <p class="text-gray-500 font-medium">Issued</p>
+                <h2 id="statIssued" class="text-3xl font-bold mt-1 text-red-600">0</h2>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm mb-8 border border-gray-100">
+            <h3 class="text-lg font-semibold mb-4 text-gray-700">Add New Book to Inventory</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 mb-1 uppercase">Title</label>
+                    <input id="newTitle" class="w-full border p-2 rounded outline-none" placeholder="e.g. Clean Code">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 mb-1 uppercase">Author</label>
+                    <input id="newAuthor" class="w-full border p-2 rounded outline-none"
+                        placeholder="e.g. Robert Martin">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 mb-1 uppercase">Category</label>
+                    <select id="newCategory" class="w-full border p-2 rounded outline-none">
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Civil Eng">Civil Eng</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex gap-4 items-end">
+                <div class="flex-1">
+                    <label class="block text-xs font-bold text-gray-400 mb-1 uppercase">Image URL (Optional)</label>
+                    <input id="newImage" class="w-full border p-2 rounded outline-none" placeholder="https://...">
+                </div>
+                <div class="w-24">
+                    <label class="block text-xs font-bold text-gray-400 mb-1 uppercase">Qty</label>
+                    <input id="newQty" type="number" min="1" value="1" class="w-full border p-2 rounded outline-none">
+                </div>
+                <button onclick="addNewBook()"
+                    class="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700 font-semibold shadow-md h-10">
+                    Add Book
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Info</th>
+                        <th class="text-center">Category</th>
+                        <th class="text-center">Stock</th>
+                        <th class="text-center">Available</th>
+                        <th class="text-right">Manage</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="issueModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="text-xl font-bold mb-2">Issue to Student</h2>
+            <p id="issueModalTitle" class="text-blue-700 font-semibold mb-4"></p>
+            <label class="block text-sm font-medium text-gray-600 mb-1">Enrollment No. (15 Digits)</label>
+            <input id="issueStudentId" type="text" maxlength="15"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                class="w-full border p-3 rounded mb-6 outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="flex justify-end gap-3">
+                <button onclick="closeModals()" class="px-4 py-2 text-gray-400">Cancel</button>
+                <button onclick="confirmIssueAction()"
+                    class="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold">Issue Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="text-xl font-bold mb-4">Edit Book</h2>
+            <div class="space-y-3">
+                <input id="editTitle" class="w-full border p-2 rounded" placeholder="Title">
+                <input id="editAuthor" class="w-full border p-2 rounded" placeholder="Author">
+                <select id="editCategory" class="w-full border p-2 rounded">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Civil Eng">Civil Eng</option>
+                </select>
+                <input id="editImage" class="w-full border p-2 rounded" placeholder="Image URL">
+                <input id="editQty" type="number" class="w-full border p-2 rounded" placeholder="Total Stock">
+            </div>
+            <div class="flex justify-end gap-3 mt-6">
+                <button onclick="closeModals()" class="px-4 py-2 text-gray-400">Cancel</button>
+                <button onclick="confirmEditAction()"
+                    class="px-6 py-2 bg-green-600 text-white rounded-lg font-bold">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/Library_dashboard.js"></script>
+</body>
+
+</html>

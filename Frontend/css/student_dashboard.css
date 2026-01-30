@@ -1,0 +1,232 @@
+:root {
+            --primary: #003366;
+            --accent: #e63946;
+            --bg-light: #f3f4f6;
+            --white: #ffffff;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --success: #10b981; 
+            --warning: #f59e0b; 
+            --danger: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: var(--white);
+            height: 70px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            font-weight: 700; font-size: 1.2rem; color: var(--primary); text-transform: uppercase;
+        }
+        .logo img { height: 40px; }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-dark);
+            font-weight: 500; transition: color 0.2s; font-size: 0.95rem;
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1200px; margin: 40px auto; padding: 0 20px;
+            display: grid; grid-template-columns: 320px 1fr; gap: 30px;
+        }
+
+        /* --- LEFT SIDE: PROFILE CARD --- */
+        .profile-card {
+            background: var(--white); border-radius: 12px; padding: 30px;
+            text-align: center; box-shadow: var(--shadow); border-top: 5px solid var(--primary);
+            height: fit-content; position: sticky; top: 100px;
+        }
+
+        .avatar {
+            width: 100px; height: 100px; background-color: #e0e7ff; color: var(--primary);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; margin: 0 auto 20px;
+        }
+
+        .profile-card h2 { font-size: 1.4rem; margin-bottom: 5px; }
+        .profile-card p { color: #6b7280; margin-bottom: 20px; font-size: 0.9rem; }
+
+        .detail-row {
+            display: flex; justify-content: space-between; padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6; font-size: 0.9rem;
+        }
+        .detail-row span:first-child { color: #6b7280; font-weight: 500; }
+        .detail-row span:last-child { font-weight: 600; }
+
+        .edit-btn {
+            margin-top: 25px; width: 100%; padding: 12px;
+            border: 1px solid var(--primary); background: transparent; color: var(--primary);
+            border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.2s;
+        }
+        .edit-btn:hover { background: var(--bg-light); }
+
+        /* --- RIGHT SIDE: CONTENT --- */
+        .greeting-header { margin-bottom: 25px; }
+        .greeting-header h1 { font-size: 1.8rem; color: var(--primary); }
+        .greeting-header p { color: var(--text-muted); font-size: 1rem; }
+
+        /* STATS GRID */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card {
+            background: var(--white); padding: 20px; border-radius: 12px; box-shadow: var(--shadow);
+            display: flex; align-items: center; gap: 20px; transition: transform 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        
+        .stat-icon {
+            width: 50px; height: 50px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+        }
+        .icon-blue { background: #e0f2fe; color: #0284c7; }
+        .icon-green { background: #dcfce7; color: #16a34a; }
+        .icon-red { background: #fee2e2; color: #dc2626; }
+        .stat-info h3 { font-size: 1.8rem; line-height: 1; }
+        .stat-info p { color: #6b7280; font-size: 0.85rem; margin-top: 5px; font-weight: 500; }
+
+        /* ACTION BANNER */
+        .action-banner {
+            background: linear-gradient(135deg, var(--primary), #0f172a);
+            border-radius: 12px; padding: 30px;
+            display: flex; justify-content: space-between; align-items: center;
+            color: white; margin-bottom: 40px; box-shadow: 0 10px 25px -5px rgba(0, 51, 102, 0.4);
+        }
+        .action-banner h3 { font-size: 1.4rem; margin-bottom: 8px; }
+        .action-banner p { opacity: 0.8; font-size: 0.95rem; }
+        
+        .cta-btn {
+            background-color: var(--white); color: var(--primary); padding: 12px 25px;
+            border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+            transition: transform 0.2s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+        /* ISSUED BOOKS SECTION */
+        .section-title { font-size: 1.25rem; color: var(--text-dark); margin-bottom: 15px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; width: 5px; height: 25px; background: var(--accent); border-radius: 10px; display: block; }
+
+        .table-container { background: var(--white); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 20px; text-align: left; border-bottom: 1px solid #f3f4f6; vertical-align: middle; }
+        th { color: #6b7280; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; background: #f9fafb; }
+        tr:last-child td { border-bottom: none; }
+
+        /* Book Info in Table */
+        .book-cell { display: flex; align-items: center; gap: 15px; }
+        .book-thumb { width: 45px; height: 60px; object-fit: cover; border-radius: 4px; background: #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .book-info h4 { font-size: 0.95rem; color: var(--text-dark); margin-bottom: 2px; }
+        .book-info span { font-size: 0.85rem; color: #6b7280; }
+
+        /* Progress Bar */
+        .progress-wrapper { width: 120px; }
+        .progress-bg { width: 100%; height: 6px; background: #e5e7eb; border-radius: 10px; overflow: hidden; margin-top: 5px; }
+        .progress-fill { height: 100%; border-radius: 10px; transition: width 0.3s; }
+        .days-text { font-size: 0.8rem; font-weight: 600; color: #6b7280; display: block; }
+
+        .btn-return { padding: 8px 16px; border-radius: 6px; border: 1px solid var(--text-muted); color: var(--text-dark); background: white; cursor: pointer; font-weight: 500; transition: 0.2s; }
+        .btn-return:hover { border-color: var(--accent); color: var(--accent); background: #fff1f2; }
+
+        /* --- MODAL --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(4px);
+        }
+        .modal-box {
+            background: white; padding: 30px; border-radius: 16px; width: 400px; max-width: 90%;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; outline: none; }
+        .form-group input:focus { border-color: var(--primary); ring: 2px solid var(--primary); }
+        
+        .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; }
+        .btn-save { background: var(--primary); color: white; border: none; padding: 10px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .btn-cancel { background: transparent; border: 1px solid #ccc; padding: 10px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; margin-top: 20px; }
+            .profile-card { position: relative; top: 0; margin-bottom: 30px; }
+            .stats-grid { gap: 15px; }
+        }
+
+        @media (max-width: 768px) {
+            /* Adjust Navbar */
+            nav { padding: 0 20px; height: 60px; }
+            .logo span { font-size: 1rem; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 0.9rem; margin-left: 10px; }
+
+            /* Adjust Stats */
+            .stats-grid { grid-template-columns: 1fr; } /* Stack stats vertically */
+            
+            /* Adjust Banner */
+            .action-banner { flex-direction: column; text-align: center; gap: 20px; padding: 25px; }
+            .action-banner h3 { font-size: 1.3rem; }
+
+            /* --- MOBILE CARD VIEW FOR TABLE --- */
+            /* Hide standard table headers */
+            table thead { display: none; }
+            
+            /* Make rows blocks */
+            table tbody tr {
+                display: block;
+                background: white;
+                margin-bottom: 15px;
+                border-bottom: 1px solid #e5e7eb;
+                padding-bottom: 15px;
+            }
+            
+            /* Make cells blocks */
+            table tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                border: none;
+                text-align: right;
+            }
+
+            /* Add labels before cell content using data-label attribute (JS handles content, CSS handles label) */
+            /* Or simply rely on the visual structure for Cards */
+            
+            /* Customizing specific cells for Card Look */
+            /* Book Title Cell acts as Header */
+            table td:first-child {
+                background: #f9fafb;
+                justify-content: flex-start;
+                font-weight: 700;
+                padding-top: 15px;
+            }
+            
+            /* Force left align for book info on mobile */
+            .book-cell { text-align: left; }
+            
+            /* Action button full width */
+            table td:last-child {
+                display: block;
+                padding-top: 0;
+            }
+            .btn-return { width: 100%; text-align: center; background-color: #fff1f2; color: var(--danger); border-color: var(--danger); }
+        }

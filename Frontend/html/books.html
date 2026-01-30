@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books | Central Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/books.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">LDCE Library</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="librarian_dashboard.html">Admin Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Browse Books</h1>
+            <div class="controls">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search" placeholder="Search Title or Author..." onkeyup="filterBooks()">
+                </div>
+                <select id="categoryFilter" onchange="filterBooks()">
+                    <option value="All">All Categories</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Civil Eng">Civil Eng</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">Image</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Qty</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="bookList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="image-modal-overlay" id="imageModal" onclick="this.style.display='none'">
+        <img class="image-modal-content" id="modalImage">
+    </div>
+
+    <script src="books.js"></script>
+</body>
+</html>
+
+<!-- <script src="books.js"></script>
+<script src="Library_dashboard.js"></script>
+<script src="common.js"></script> -->
+
